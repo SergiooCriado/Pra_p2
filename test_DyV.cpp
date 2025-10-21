@@ -1,57 +1,22 @@
 #include <iostream>
-#include <chrono>    
-#include <cstdlib>   
-#include <ctime>     
-
-#include "DyV.h" 
-
+#include <vector>
+#include "DyV.h"
+#include <string>
 using namespace std;
 
-template<typename T>
-void imprimirVector(const T V[], int N) {
-    cout << "[";
-    for (int i = 0; i < N; ++i) {
-        cout << V[i] << (i < N - 1 ? ", " : "");
-    }
-    cout << "]";
-}
+int main(){
+	vector<int> datosNumeros = {1,3,6,9,13};
+	int idxNumero = BusquedaBinaria(9, datosNumeros, 0, datosNumeros.size() - 1);
+	cout <<"Indice del 9 en datosNumeros: " << idxNumero << endl;
 
-int main() {
-    const int N = 10; 
-    int V[N];
-    
-    srand(time(nullptr)); 
-    
-    for (int i = 0; i < N; ++i) {
-        V[i] = rand() % 100;
-    }
-    
-    cout << "Vector original (" << N << " elementos):\n";
-    imprimirVector(V, N);
-    cout << "\n\n";
-    
-    int V_quick[N];
-    for (int i = 0; i < N; ++i) {
-        V_quick[i] = V[i];
-    }
-    
-    cout << "--- QUICK SORT ---\n";
+	vector<float> datosDecimales = {1.2f, 2.5f, 3.5f, 7.8f, 10.2f};
+	int idxDecimal = BusquedaBinaria(1.2f, datosDecimales, 0, datosDecimales.size() - 1);
+	cout << "Indice del 1.2f en datosDecimales: " << idxDecimal << endl;
 
-    auto start = chrono::system_clock::now(); 
-
-    QuickSort(V_quick, 0, N - 1); 
-
-    auto end = chrono::system_clock::now();
-    
-    chrono::duration<float, milli> duration = end - start; 
-
-    cout << "Vector ordenado con QuickSort:\n";
-    imprimirVector(V_quick, N);
-    cout << "\n\n";
-
-    cout << "Tiempo de ejecucion (QuickSort): " 
-              << duration.count() << " ms\n";
-    cout << "-----------------------------------\n";
-
-    return 0;
-}
+	vector<string> datosTexto = {"hola", "adios", "chao", "yes"};
+	int idxTexto = BusquedaBinaria(string("yes"), datosTexto, 0,datosTexto.size() - 1);
+	cout << "Indice de \"yes\" en datosTexto: " << idxTexto << endl;
+	
+	vector<char> datosCaracteres = {'a', 'b', 'c','d','e'};
+	int idxCaracter = BusquedaBinaria('d', datosCaracteres, 0, datosCaracteres.size() - 1);
+	cout << "Indice del 'd' en datosCaracteres: " << idxCaracter << endl;
